@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lern mit mir auf SchoolBrain</title>
+  <meta name="description" content="Eine Einladung zu SchoolBrain – über diesen Link seid ihr direkt befreundet und bekommt beide 50 Lernpunkte.">
+  <meta property="og:title" content="Lern mit mir auf SchoolBrain">
+  <meta property="og:description" content="Über diesen Link seid ihr direkt befreundet – und bekommt beide 50 Lernpunkte.">
+  <meta property="og:image" content="https://eric-kahrau-commits.github.io/icon.png">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="noindex">
+  <style>
+    :root { --canvas: #0B0B0D; --card: rgba(120,150,220,0.12); --stroke: rgba(160,190,255,0.24); --text: #fff; --muted: rgba(255,255,255,0.6); --accent: #7183D6; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 50% 0%, #1d2a57 0%, var(--canvas) 60%); color: var(--text);
+           font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif; display: flex; justify-content: center; padding: 48px 20px; }
+    main { width: 100%; max-width: 420px; text-align: center; }
+    img.icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    h1 { font-size: 28px; margin: 24px 0 8px; }
+    p { color: var(--muted); line-height: 1.5; margin: 0 0 20px; }
+    .code { font: 700 30px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 2px; padding: 18px; border-radius: 18px;
+            background: var(--card); border: 1px solid var(--stroke); margin: 8px 0 24px; }
+    a.button { display: block; padding: 16px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 12px; font-size: 17px; }
+    a.primary { background: var(--accent); color: #fff; }
+    a.secondary { background: var(--card); color: var(--text); border: 1px solid var(--stroke); }
+    small { display: block; color: var(--muted); line-height: 1.5; margin-top: 20px; }
+    .bonus { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(113,131,214,0.22); color: #c9d2ff; font-weight: 600; font-size: 14px; margin-bottom: 18px; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="icon" src="../icon.png" alt="SchoolBrain">
+    <h1>Du wurdest eingeladen</h1>
+    <div class="bonus">+50 Lernpunkte für euch beide</div>
+    <p>Mit diesem Code seid ihr auf SchoolBrain direkt befreundet – ihr seht, wie der andere lernt, und könnt eure Lernsets teilen.</p>
+    <div class="code" id="code">––––-––––</div>
+    <a class="button primary" id="open" href="schoolbrain://p">In SchoolBrain öffnen</a>
+    <a class="button secondary" id="store" href="#">Im App Store laden</a>
+    <small>Noch nicht installiert? Lade die App, richte sie ein und öffne diesen Link danach noch einmal – oder gib den Code unter <b>Profil → Freunde hinzufügen</b> ein.</small>
+  </main>
+  <script>
+    // ⚠️ Sobald die App im Store steht, hier ihre Adresse eintragen
+    // (App Store Connect → App-Informationen → Apple-ID), z. B.
+    // "https://apps.apple.com/de/app/schoolbrain/id1234567890".
+    // Bis dahin öffnet der Knopf die Suche im App Store.
+    const APP_STORE_URL = "https://apps.apple.com/app/id6802082312";
+    const SEARCH_URL = "itms-apps://search.itunes.apple.com/WebObjects/MZSearch.woa/wa/search?media=software&term=SchoolBrain";
+
+    const params = new URLSearchParams(location.search);
+    const raw = (params.get("c") || "").toUpperCase().replace(/[^0-9A-Z]/g, "");
+    if (raw.length === 8) {
+      document.getElementById("code").textContent = raw.slice(0, 4) + "-" + raw.slice(4);
+      document.getElementById("open").href = "schoolbrain://p?c=" + raw;
+    }
+    document.getElementById("store").href = APP_STORE_URL || SEARCH_URL;
+  </script>
+</body>
+</html>

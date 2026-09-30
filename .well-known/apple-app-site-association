@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["55WJLW3FVS.com.eric.SchoolScanner"],
+        "components": [
+          { "/": "/p/*", "comment": "Profil über einen Einladungscode" },
+          { "/": "/s/*", "comment": "Ein geteiltes Lernset" }
+        ]
+      }
+    ]
+  }
+}

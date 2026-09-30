@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ein Lernset auf SchoolBrain</title>
+  <meta name="description" content="Ein geteiltes Lernset – mit Karteikarten, Fragen, Lernübersicht und Probeklausur.">
+  <meta property="og:title" content="Ein Lernset für dich auf SchoolBrain">
+  <meta property="og:description" content="Mit Karteikarten, Schnelllern-Fragen, Lernübersicht und Probeklausur – übernimm es mit einem Tipp.">
+  <meta property="og:image" content="https://eric-kahrau-commits.github.io/icon.png">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="noindex">
+  <style>
+    :root { --canvas: #0B0B0D; --card: rgba(120,150,220,0.12); --stroke: rgba(160,190,255,0.24); --text: #fff; --muted: rgba(255,255,255,0.6); --accent: #7183D6; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 50% 0%, #1d2a57 0%, var(--canvas) 60%); color: var(--text);
+           font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif; display: flex; justify-content: center; padding: 48px 20px; }
+    main { width: 100%; max-width: 420px; text-align: center; }
+    img.icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    h1 { font-size: 28px; margin: 24px 0 8px; }
+    p { color: var(--muted); line-height: 1.5; margin: 0 0 24px; }
+    ul { list-style: none; padding: 0; margin: 0 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    li { padding: 14px 10px; border-radius: 14px; background: var(--card); border: 1px solid var(--stroke); font-weight: 600; font-size: 14px; }
+    a.button { display: block; padding: 16px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 12px; font-size: 17px; }
+    a.primary { background: var(--accent); color: #fff; }
+    a.secondary { background: var(--card); color: var(--text); border: 1px solid var(--stroke); }
+    small { display: block; color: var(--muted); line-height: 1.5; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="icon" src="../icon.png" alt="SchoolBrain">
+    <h1>Ein Lernset für dich</h1>
+    <p>Jemand teilt ein Lernset mit dir. In SchoolBrain übernimmst du es mit einem Tipp – samt allem, was schon darin steckt:</p>
+    <ul>
+      <li>Karteikarten</li>
+      <li>Schnelllernen</li>
+      <li>Lernübersicht</li>
+      <li>Probeklausur</li>
+    </ul>
+    <a class="button primary" id="open" href="schoolbrain://s">In SchoolBrain öffnen</a>
+    <a class="button secondary" id="store" href="#">Im App Store laden</a>
+    <small>Noch nicht installiert? Lade die App, richte sie ein und öffne diesen Link danach noch einmal.</small>
+  </main>
+  <script>
+    // ⚠️ Dieselbe Adresse wie in p/index.html eintragen, sobald die App im Store steht.
+    const APP_STORE_URL = "https://apps.apple.com/app/id6802082312";
+    const SEARCH_URL = "itms-apps://search.itunes.apple.com/WebObjects/MZSearch.woa/wa/search?media=software&term=SchoolBrain";
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id") || "";
+    const code = (params.get("c") || "").toUpperCase().replace(/[^0-9A-Z]/g, "");
+    if (/^[0-9A-Fa-f-]{36}$/.test(id)) {
+      document.getElementById("open").href = "schoolbrain://s?id=" + id + (code.length === 8 ? "&c=" + code : "");
+    }
+    document.getElementById("store").href = APP_STORE_URL || SEARCH_URL;
+  </script>
+</body>
+</html>
