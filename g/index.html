@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ein Geschenk für dich – SchoolBrain</title>
+  <meta name="description" content="Jemand schenkt dir KI-Points für SchoolBrain. Öffne das Geschenk in der App.">
+  <meta property="og:title" content="Ein Geschenk für dich 🎁">
+  <meta property="og:description" content="Jemand schenkt dir KI-Points für SchoolBrain – öffne es in der App.">
+  <meta property="og:image" content="https://eric-kahrau-commits.github.io/icon.png">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="noindex">
+  <style>
+    :root { --canvas: #000; --card: rgba(160,120,255,0.12); --stroke: rgba(200,160,255,0.28); --text: #fff; --muted: rgba(255,255,255,0.62); }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 50% 10%, #3a1b6b 0%, var(--canvas) 62%); color: var(--text);
+           font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif; display: flex; justify-content: center; padding: 48px 20px; }
+    main { width: 100%; max-width: 420px; text-align: center; }
+    .gift { font-size: 84px; line-height: 1; filter: drop-shadow(0 12px 30px rgba(255,79,184,0.5)); animation: wobble 2.2s ease-in-out infinite; }
+    @keyframes wobble { 0%,100% { transform: rotate(-4deg) scale(1); } 50% { transform: rotate(4deg) scale(1.05); } }
+    @media (prefers-reduced-motion: reduce) { .gift { animation: none; } }
+    h1 { font-size: 28px; margin: 22px 0 8px; }
+    p { color: var(--muted); line-height: 1.5; margin: 0 0 20px; }
+    .code { font: 700 28px ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 2px; padding: 18px; border-radius: 18px;
+            background: var(--card); border: 1px solid var(--stroke); margin: 8px 0 24px; }
+    a.button { display: block; padding: 16px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 12px; font-size: 17px; }
+    a.primary { background: linear-gradient(90deg, #7B5CFF, #FF4FB8, #FF9A3D); color: #fff; }
+    a.secondary { background: var(--card); color: var(--text); border: 1px solid var(--stroke); }
+    small { display: block; color: var(--muted); line-height: 1.5; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="gift" aria-hidden="true">🎁</div>
+    <h1>Ein Geschenk für dich</h1>
+    <p>Jemand schenkt dir KI-Points für SchoolBrain – für den Chat, Karteikarten, Lernübersichten und mehr.</p>
+    <div class="code" id="code">SB-––––-––––</div>
+    <a class="button primary" id="open" href="schoolbrain://g">Geschenk öffnen</a>
+    <a class="button secondary" id="store" href="#">SchoolBrain im App Store laden</a>
+    <small>Noch nicht installiert? Lade die App, richte sie ein und tippe danach noch einmal auf den Link – oder gib den Code unter <b>Einstellungen → KI-Points → Gutschein einlösen</b> ein.</small>
+  </main>
+  <script>
+    const APP_STORE_URL = "https://apps.apple.com/app/id6802082312";
+    const params = new URLSearchParams(location.search);
+    const raw = (params.get("c") || "").toUpperCase().replace(/[^0-9A-Z]/g, "");
+    if (raw.length === 8) {
+      document.getElementById("code").textContent = "SB-" + raw.slice(0, 4) + "-" + raw.slice(4);
+      document.getElementById("open").href = "schoolbrain://g?c=" + raw;
+    }
+    document.getElementById("store").href = APP_STORE_URL;
+  </script>
+</body>
+</html>

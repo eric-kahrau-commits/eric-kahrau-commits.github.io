@@ -2,10 +2,22 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["55WJLW3FVS.com.eric.SchoolScanner"],
+        "appIDs": [
+          "55WJLW3FVS.com.eric.SchoolScanner"
+        ],
         "components": [
-          { "/": "/p/*", "comment": "Profil über einen Einladungscode" },
-          { "/": "/s/*", "comment": "Ein geteiltes Lernset" }
+          {
+            "/": "/p/*",
+            "comment": "Profil über einen Einladungscode"
+          },
+          {
+            "/": "/s/*",
+            "comment": "Ein geteiltes Lernset"
+          },
+          {
+            "/": "/g/*",
+            "comment": "Ein Gutschein mit KI-Points"
+          }
         ]
       }
     ]
